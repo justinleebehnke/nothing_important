@@ -11,11 +11,13 @@ import model_classes.User;
 public class UserDAOTest {
     @Before
     public void clearDB() throws DatabaseException {
+        System.out.println("UserDAO test: BEGIN");
         Database db = new Database();
         db.clear();
     }
     @After
     public void clearAfter() throws DatabaseException {
+        System.out.println("UserDAO test: COMPLETE");
         Database db = new Database();
         db.clear();
     }

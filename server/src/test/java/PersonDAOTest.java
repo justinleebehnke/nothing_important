@@ -13,11 +13,13 @@ import model_classes.Person;
 public class PersonDAOTest {
     @Before
     public void clearDB() throws DatabaseException {
+        System.out.println("PersonDAO test: BEGIN");
         Database db = new Database();
         db.clear();
     }
     @After
     public void clearAfter() throws DatabaseException {
+        System.out.println("PersonDAO test: COMPLETE");
         Database db = new Database();
         db.clear();
     }
@@ -29,7 +31,7 @@ public class PersonDAOTest {
         PersonDAO personDAO = new PersonDAO();
         personDAO.add(person);
 
-        Person person1 = personDAO.read(person.getPersonID());
+        Person person1 = personDAO.read(person.getPersonID(), person.getDescendant());
         Assert.assertEquals(person.getPersonID(), person1.getPersonID());
         Assert.assertEquals(person.getDescendant(), person1.getDescendant());
         Assert.assertEquals(person.getFirstName(), person1.getFirstName());
@@ -93,7 +95,7 @@ public class PersonDAOTest {
 
         PersonDAO personDAO = new PersonDAO();
         personDAO.add(person);
-        Person person1 = personDAO.read(person.getPersonID());
+        Person person1 = personDAO.read(person.getPersonID(), person.getDescendant());
         Assert.assertEquals(person.getPersonID(), person1.getPersonID());
         Assert.assertEquals(person.getFather(), person1.getFather());
         Assert.assertEquals(person.getMother(), person1.getMother());

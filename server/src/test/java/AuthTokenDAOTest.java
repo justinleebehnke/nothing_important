@@ -12,11 +12,13 @@ public class AuthTokenDAOTest {
 
     @Before
     public void clearDB() throws DatabaseException {
+        System.out.println("AuthTokenDAO test: BEGIN");
         Database db = new Database();
         db.clear();
     }
     @After
     public void clearAfter() throws DatabaseException {
+        System.out.println("AuthTokenDAO test: COMPLETE");
         Database db = new Database();
         db.clear();
     }
@@ -51,6 +53,5 @@ public class AuthTokenDAOTest {
         Assert.assertEquals("Jess", authTokenDAO.read(authToken4.getAuth_token()));
         Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken5.getAuth_token()));
         Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken6.getAuth_token()));
-
     }
 }

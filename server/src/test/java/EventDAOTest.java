@@ -14,18 +14,20 @@ import model_classes.Event;
 public class EventDAOTest {
     @Before
     public void clearDB() throws DatabaseException {
+        System.out.println("EventDAO test: BEGIN");
         Database db = new Database();
         db.clear();
     }
     @After
     public void clearAfter() throws DatabaseException {
+        System.out.println("EventDAO test: COMPLETE");
         Database db = new Database();
         db.clear();
     }
     @Test
     public void testAddAndReadOneEvent() throws DatabaseException {
 
-        Event event = new Event("justin", UUID.randomUUID(),
+        Event event = new Event("justin", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Canada", "Albequrque",
                 "Birth", 1990);
 
@@ -33,7 +35,7 @@ public class EventDAOTest {
 
         eventDAO.add(event);
 
-        Event event1 = eventDAO.read(event.getEventID());
+        Event event1 = eventDAO.readEvent(event.getEventID(), event.getDescendant());
 
         Assert.assertEquals(event.getEventID(), event1.getEventID());
         Assert.assertEquals(event.getPersonID(), event1.getPersonID());
@@ -54,20 +56,20 @@ public class EventDAOTest {
      */
     @Test
     public void testListOfEventsReturned() throws DatabaseException {
-        Event event1 = new Event("justin", UUID.randomUUID(),
+        Event event1 = new Event("justin", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Utah", "Albequrque",
                 "Birth", 1990);
-        Event event2 = new Event("justin", UUID.randomUUID(),
+        Event event2 = new Event("justin", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Canada", "Albequrque",
                 "Death", 2018);
-        Event event3 = new Event("justin", UUID.randomUUID(),
+        Event event3 = new Event("justin", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Costa Rica", "Albequrque",
                 "Residence", 2017);
 
-        Event event4 = new Event("jack", UUID.randomUUID(),
+        Event event4 = new Event("jack", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Costa Rica", "Albequrque",
                 "Residence", 2017);
-        Event event5 = new Event("jill", UUID.randomUUID(),
+        Event event5 = new Event("jill", UUID.randomUUID().toString(),
                 006.342312, 006.3213, "Costa Rica", "Albequrque",
                 "Residence", 2017);
 

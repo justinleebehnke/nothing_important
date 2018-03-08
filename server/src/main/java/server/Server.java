@@ -110,7 +110,15 @@ public class Server {
     // "args" should contain one command-line argument, which is the port number
     // on which the server should accept incoming client connections.
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Usage: must include a port number must be between 6000-65535");
+            return;
+        }
         String portNumber = args[0];
+        if (Integer.parseInt(args[0]) > 65535 || Integer.parseInt(args[0]) < 6000) {
+            System.out.println("Usage: port must be between 6000-65535");
+            return;
+        }
         new Server().run(portNumber);
     }
 }

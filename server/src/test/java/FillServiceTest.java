@@ -10,6 +10,16 @@ import services.fill.FillService;
 import services.message.InvalidInputException;
 
 public class FillServiceTest {
+    /*
+    *   4 generations = 31 persons
+        Death is last event in their lives
+        Birth is first event in their lives
+        marriage occurs at realistic age
+
+        fill creates the proper ratios of people 1 for 0 3 for 1 etc
+        fill throws error on negative or > 8 generations
+        fill defaults to 4 generations when not specified
+        */
 
     @Before
     public void clearDB() throws DatabaseException {
