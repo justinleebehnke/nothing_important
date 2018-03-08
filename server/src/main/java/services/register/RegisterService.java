@@ -4,6 +4,10 @@ import dao.DatabaseException;
 import dao.UserDAO;
 import model_classes.User;
 import services.fill.FillService;
+import services.login.LoginRequest;
+import services.login.LoginResult;
+import services.login.LoginService;
+import services.message.ErrorMessageException;
 import services.message.InvalidInputException;
 
 public class RegisterService {
@@ -19,7 +23,7 @@ public class RegisterService {
      * @param registerRequest
      * @return
      */
-    public RegisterResult register(RegisterRequest registerRequest) throws InvalidInputException {
+    public RegisterResult register(RegisterRequest registerRequest) throws InvalidInputException, ErrorMessageException {
 
         if (isValidRequest(registerRequest)) {
             //create new user account
@@ -40,14 +44,21 @@ public class RegisterService {
                 //generate four generations of familyHistoryInformation
                 FillService fillService = new FillService();
                 try {
-                fillService.fill(user.getUsername(), 4);
+                    fillService.fill(user.getUsername(), 4);
                 }
                 catch (DatabaseException dbe) {
                     throw new InvalidInputException(dbe.toString(), dbe);
                 }
                 //log the user in
+                LoginRequest loginRequest = new LoginRequest(user.getUsername(), user.getPassword());
+                LoginService loginService = new LoginService();
+                LoginResult loginResult = loginService.login(loginRequest);
 
                 //return the result object
+                return new RegisterResult(
+                        loginResult.getAuth_token(),
+                        user.getUsername(),
+                        loginResult.getPerson_id());
             }
             else {
                 throw new InvalidInputException("Username is already taken");
@@ -56,7 +67,6 @@ public class RegisterService {
         else {
             throw new InvalidInputException("User Register Input was invalid");
         }
-        return new RegisterResult();
     }
 
     private boolean isValidUserName(String userName) {

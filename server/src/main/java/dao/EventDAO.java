@@ -19,31 +19,30 @@ public class EventDAO {
      * @throws DatabaseException
      */
     public void add(Event event) throws DatabaseException {
+        String sql =
+                "insert into events (event_id, " +
+                        "descendant_username, " +
+                        "person_id, " +
+                        "latitude, " +
+                        "longitude, " +
+                        "country, " +
+                        "city, " +
+                        "event_type, " +
+                        "year" +
+                        ") values ('" +
+                        event.getEvent_id() + "', '" +
+                        event.getDescendant_username() + "', '" +
+                        event.getPerson_id() + "', '" +
+                        event.getLatitude() + "', '" +
+                        event.getLongitude() + "', '" +
+                        event.getCountry() + "', '" +
+                        event.getCity() + "', '" +
+                        event.getEvent_type() + "', '" +
+                        event.getYear() + "');";
         try {
             Database db = new Database();
             db.openConnection();
             Connection connection = db.getConnection();
-
-            String sql =
-                    "insert into events (event_id, " +
-                    "descendant_username, " +
-                    "person_id, " +
-                    "latitude, " +
-                    "longitude, " +
-                    "country, " +
-                    "city, " +
-                    "event_type, " +
-                    "year" +
-                    ") values ('" +
-                    event.getEvent_id() + "', '" +
-                    event.getDescendant_username() + "', '" +
-                    event.getPerson_id() + "', '" +
-                    event.getLatitude() + "', '" +
-                    event.getLongitude() + "', '" +
-                    event.getCountry() + "', '" +
-                    event.getCity() + "', '" +
-                    event.getEvent_type() + "', '" +
-                    event.getYear() + "');";
 
             PreparedStatement preparedStatement = null;
 
@@ -60,6 +59,7 @@ public class EventDAO {
                 }
             }
         } catch (SQLException e) {
+            System.out.print(sql + "\n");
             throw new DatabaseException("Add Event failed", e);
         }
     }

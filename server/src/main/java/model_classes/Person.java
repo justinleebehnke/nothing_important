@@ -69,6 +69,10 @@ public class Person {
         this.spouse = spouse;
     }
 
+    public void setSpouse(String spouse) {
+        this.spouse = spouse;
+    }
+
     public UUID getPerson_id() {
         return person_id;
     }

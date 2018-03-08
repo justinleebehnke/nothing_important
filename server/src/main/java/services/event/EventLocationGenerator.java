@@ -11,7 +11,7 @@ public class EventLocationGenerator {
     public EventLocationGenerator() {
         Gson gson = new Gson();
         try {
-            Reader reader = new FileReader("locations.json");
+            Reader reader = new FileReader("/home/justin/AndroidStudioProjects/fms/server/src/main/java/services/event/locations.json");
             data = gson.fromJson(reader, EventLocationData.class);
         }
         catch (Exception e) {
@@ -21,13 +21,9 @@ public class EventLocationGenerator {
     }
 
     public EventLocation randomLocation() {
-        //inclusive
         int min = 0;
-        int range = (data.data.length - min) + 1;
+        int range = (data.data.length - min);
         int i = (int)(Math.random() * range) + min;
-        assert i < data.data.length;
-        assert i >= 0;
-
         return data.data[i];
     }
 }

@@ -14,8 +14,7 @@ import java.nio.file.Files;
 
 public class DefaultFileHandler implements HttpHandler {
 
-private static String pathToFolder = "/home/justin/AndroidStudioProjects/family_map_full_project_2/" +
-        "family_map_full_project/server/src/main/web";
+private static String pathToFolder = "/home/justin/AndroidStudioProjects/fms/server/src/main/java/server/web";
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

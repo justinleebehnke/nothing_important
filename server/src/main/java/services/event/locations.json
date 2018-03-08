@@ -1237,12 +1237,6 @@
       "longitude": -121.6667
     },
     {
-      "country": "Canada",
-      "city": "St. John\u0027s",
-      "latitude": 47.5667,
-      "longitude": -51.3
-    },
-    {
       "country": "Switzerland",
       "city": "Basel",
       "latitude": 47.5667,
@@ -2725,12 +2719,6 @@
       "longitude": 134.05
     },
     {
-      "country": "China",
-      "city": "Xi\u0027an",
-      "latitude": 34.2667,
-      "longitude": 108.9
-    },
-    {
       "country": "Japan",
       "city": "Wakayama",
       "latitude": 34.2333,
@@ -3859,12 +3847,6 @@
       "longitude": 32.5333
     },
     {
-      "country": "Yemen",
-      "city": "Sana\u0027a",
-      "latitude": 15.35,
-      "longitude": 44.2
-    },
-    {
       "country": "Eritrea",
       "city": "Asmara",
       "latitude": 15.3333,
@@ -4085,18 +4067,6 @@
       "city": "Willemstad",
       "latitude": 12.1167,
       "longitude": -67.0667
-    },
-    {
-      "country": "Chad",
-      "city": "N\u0027Djamena",
-      "latitude": 12.1167,
-      "longitude": 15.05
-    },
-    {
-      "country": "Grenada",
-      "city": "St. George\u0027s",
-      "latitude": 12.05,
-      "longitude": -60.25
     },
     {
       "country": "Nigeria",

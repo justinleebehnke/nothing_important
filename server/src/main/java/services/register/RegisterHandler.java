@@ -1,8 +1,6 @@
 package services.register;
 
-
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -11,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import services.message.ErrorMessageException;
 import services.message.InvalidInputException;
 import services.message.MessageResponse;
 import sun.net.www.protocol.http.HttpURLConnection;
@@ -31,7 +30,7 @@ public class RegisterHandler implements HttpHandler {
                 try {
                     registerRequest = gson.fromJson(inputStreamReader, RegisterRequest.class);
                 }
-                catch (JsonSyntaxException e) {
+                catch (Exception e) {
                     throw new InvalidInputException("Failed to create object from JSON", e);
                 }
 
@@ -71,6 +70,15 @@ public class RegisterHandler implements HttpHandler {
         catch (InvalidInputException e) {
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
             //send error services.message
+            OutputStream outputStream = httpExchange.getResponseBody();
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+            gson.toJson(errorMessage, outputStreamWriter);
+            outputStreamWriter.flush();
+            outputStream.close();
+        }
+        catch (ErrorMessageException e) {
+            //return the error message
+            errorMessage = new MessageResponse(e.toString());
             OutputStream outputStream = httpExchange.getResponseBody();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
             gson.toJson(errorMessage, outputStreamWriter);

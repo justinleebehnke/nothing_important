@@ -4,7 +4,7 @@ public class EventLocation {
     private String country;
     private String city;
     private double latitude;
-    private double longitutde;
+    private double longitude;
 
     public String getCountry() {
         return country;
@@ -18,7 +18,7 @@ public class EventLocation {
         return latitude;
     }
 
-    public double getLongitutde() {
-        return longitutde;
+    public double getLongitude() {
+        return longitude;
     }
 }
