@@ -4,8 +4,8 @@ import java.util.UUID;
 
 public class LoginResult {
     private UUID auth_token;
-    private String username;
-    private UUID person_id;
+    private String userName;
+    private String person_id;
 
     /**
      * This class is just a data structure to hold the success response body of a login request
@@ -13,9 +13,9 @@ public class LoginResult {
      * @param username
      * @param person_id
      */
-    public LoginResult(UUID auth_token, String username, UUID person_id) {
+    public LoginResult(UUID auth_token, String username, String person_id) {
         this.auth_token = auth_token;
-        this.username = username;
+        this.userName = username;
         this.person_id = person_id;
     }
 
@@ -23,11 +23,11 @@ public class LoginResult {
         return auth_token;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public UUID getPerson_id() {
+    public String getPerson_id() {
         return person_id;
     }
 }

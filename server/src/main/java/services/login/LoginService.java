@@ -31,25 +31,28 @@ public class LoginService {
         boolean valid = false;
 
         try {
-            user = userDAO.read(loginRequest.getUsername());
-            if (user.getUsername().equals(loginRequest.getUsername())) {
+            user = userDAO.read(loginRequest.getUserName());
+            if (user.getUserName().equals(loginRequest.getUserName())) {
                 if (user.getPassword().equals(loginRequest.getPassword())) {
                     valid = true;
                 }
             }
             if (valid) {
-                authToken = new AuthToken(user.getUsername());
+                authToken = new AuthToken(user.getUserName());
                 authTokenDAO.add(authToken);
                 loginResult = new LoginResult(
                         authToken.getAuth_token(),
-                        user.getUsername(),
-                        user.getPerson_id());
+                        user.getUserName(),
+                        user.getPersonID());
             } else {
-                throw new DatabaseException("Login was not valid");
+                throw new DatabaseException("Username and/or password incorrect");
             }
         }
         catch (DatabaseException dba) {
-            throw new ErrorMessageException("Failed to login");
+            throw new ErrorMessageException("Failed to login:" + dba.toString());
+        }
+        catch (Exception e) {
+            throw new ErrorMessageException("Failed to login: " + e.toString());
         }
 
         return loginResult;

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 
 import model_classes.AuthToken;
 
@@ -52,7 +53,7 @@ public class AuthTokenDAO {
      * @return String username OR a string reading INVALID AUTH TOKEN
      * @throws DatabaseException
      */
-    public String read(AuthToken authToken) throws DatabaseException {
+    public String read(UUID authToken) throws DatabaseException {
 
         try {
             Database db = new Database();
@@ -60,7 +61,7 @@ public class AuthTokenDAO {
             Connection connection = db.getConnection();
 
             String query = "SELECT username FROM auth_tokens\n" +
-                    "WHERE authorization_token='" + authToken.getAuth_token() + "';";
+                    "WHERE authorization_token='" + authToken.toString() + "';";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class RegisterResult {
     private UUID auth_token;
     private String username;
-    private UUID person_id;
+    private String person_id;
 
     public RegisterResult() {
         //Stub for easy stubbing other classes
@@ -18,7 +18,7 @@ public class RegisterResult {
      * @param username
      * @param person_id
      */
-    public RegisterResult(UUID auth_token, String username, UUID person_id) {
+    public RegisterResult(UUID auth_token, String username, String person_id) {
         this.auth_token = auth_token;
         this.username = username;
         this.person_id = person_id;

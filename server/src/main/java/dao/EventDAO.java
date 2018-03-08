@@ -30,14 +30,14 @@ public class EventDAO {
                         "event_type, " +
                         "year" +
                         ") values ('" +
-                        event.getEvent_id() + "', '" +
-                        event.getDescendant_username() + "', '" +
-                        event.getPerson_id() + "', '" +
+                        event.getEventID() + "', '" +
+                        event.getDescendant() + "', '" +
+                        event.getPersonID() + "', '" +
                         event.getLatitude() + "', '" +
                         event.getLongitude() + "', '" +
                         event.getCountry() + "', '" +
                         event.getCity() + "', '" +
-                        event.getEvent_type() + "', '" +
+                        event.getEventType() + "', '" +
                         event.getYear() + "');";
         try {
             Database db = new Database();
@@ -71,7 +71,7 @@ public class EventDAO {
      * @return event object
      * @throws DatabaseException
      */
-    public Event read(UUID event_id) throws DatabaseException {
+    public Event readEvent(String event_id, String username) throws DatabaseException {
         try {
             Database db = new Database();
             db.openConnection();
@@ -90,9 +90,9 @@ public class EventDAO {
             } else {
 
                 Event event = new Event(
-                        UUID.fromString(resultSet.getString("event_id")),
+                        resultSet.getString("event_id"),
                         resultSet.getString("descendant_username"),
-                        UUID.fromString(resultSet.getString("person_id")),
+                        resultSet.getString("person_id"),
                         resultSet.getDouble("latitude"),
                         resultSet.getDouble("longitude"),
                         resultSet.getString("country"),
@@ -102,6 +102,9 @@ public class EventDAO {
 
                 statement.close();
                 db.closeConnection(false);
+                if (!event.getDescendant().equals(username)) {
+                    throw new DatabaseException("Event Specified is not owned by user");
+                }
                 return event;
             }
         } catch (SQLException e) {
@@ -137,9 +140,9 @@ public class EventDAO {
                 ArrayList<Event> events = new ArrayList<>();
                 do {
                     Event event1 = new Event(
-                            UUID.fromString(resultSet.getString("event_id")),
+                            resultSet.getString("event_id"),
                             resultSet.getString("descendant_username"),
-                            UUID.fromString(resultSet.getString("person_id")),
+                            resultSet.getString("person_id"),
                             resultSet.getDouble("latitude"),
                             resultSet.getDouble("longitude"),
                             resultSet.getString("country"),

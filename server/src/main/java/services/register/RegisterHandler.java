@@ -59,6 +59,7 @@ public class RegisterHandler implements HttpHandler {
         catch (IOException e) {
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
             //send error services.message
+            errorMessage = new MessageResponse(e.toString());
             OutputStream outputStream = httpExchange.getResponseBody();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
             gson.toJson(errorMessage, outputStreamWriter);
@@ -67,17 +68,9 @@ public class RegisterHandler implements HttpHandler {
 
             e.printStackTrace();
         }
-        catch (InvalidInputException e) {
+        catch (Exception e) {
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
             //send error services.message
-            OutputStream outputStream = httpExchange.getResponseBody();
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            gson.toJson(errorMessage, outputStreamWriter);
-            outputStreamWriter.flush();
-            outputStream.close();
-        }
-        catch (ErrorMessageException e) {
-            //return the error message
             errorMessage = new MessageResponse(e.toString());
             OutputStream outputStream = httpExchange.getResponseBody();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);

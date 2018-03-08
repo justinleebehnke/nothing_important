@@ -34,10 +34,10 @@ public class PersonDAO {
                             "mother, " +
                             "spouse " +
                             ") values ('" +
-                            person.getPerson_id() + "', '" +
-                            person.getDescendant_username() + "', '" +
-                            person.getFirst_name() + "', '" +
-                            person.getLast_name() + "', '" +
+                            person.getPersonID() + "', '" +
+                            person.getDescendant() + "', '" +
+                            person.getFirstName() + "', '" +
+                            person.getLastName() + "', '" +
                             person.getGender() + "', '" +
                             person.getFather() + "', '" +
                             person.getMother() + "', '" +
@@ -89,7 +89,7 @@ public class PersonDAO {
             } else {
 
                 Person person = new Person(
-                        UUID.fromString(resultSet.getString("person_id")),
+                        resultSet.getString("person_id"),
                         resultSet.getString("descendant_username"),
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
@@ -135,7 +135,7 @@ public class PersonDAO {
                 ArrayList<Person> persons = new ArrayList<>();
                 do {
                     Person person = new Person(
-                            UUID.fromString(resultSet.getString("person_id")),
+                            resultSet.getString("person_id"),
                             resultSet.getString("descendant_username"),
                             resultSet.getString("first_name"),
                             resultSet.getString("last_name"),

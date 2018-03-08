@@ -8,14 +8,14 @@ public class Event {
         //Deleteme ASAP, needed for function stubbing
     }
 
-    private UUID event_id;
-    private String descendant_username;
-    private UUID person_id;
+    private String eventID;
+    private String descendant;
+    private String personID;
     private double latitude;
     private double longitude;
     private String country;
     private String city;
-    private String event_type;
+    private String eventType;
     private int year;
 
     /**
@@ -23,26 +23,26 @@ public class Event {
      * will not generate a new one like the other constructor does. this constructor like all
      * other model constructors expects that the parameters passed to it have already been validated.
      *
-     * @param event_id
-     * @param descendant_username
-     * @param person_id
+     * @param eventID
+     * @param descendant
+     * @param personID
      * @param latitude
      * @param longitude
      * @param country
      * @param city
-     * @param event_type
+     * @param eventType
      * @param year
      */
-    public Event(UUID event_id, String descendant_username, UUID person_id, double latitude,
-                 double longitude, String country, String city, String event_type, int year) {
-        this.event_id = event_id;
-        this.descendant_username = descendant_username;
-        this.person_id = person_id;
+    public Event(String eventID, String descendant, String personID, double latitude,
+                 double longitude, String country, String city, String eventType, int year) {
+        this.eventID = eventID;
+        this.descendant = descendant;
+        this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
         this.city = city;
-        this.event_type = event_type;
+        this.eventType = eventType;
         this.year = year;
     }
 
@@ -52,38 +52,38 @@ public class Event {
      * this constructor like all other model constructors expects
      * that the parameters passed to it have already been validated.
      *
-     * @param descendant_username
-     * @param person_id
+     * @param descendant
+     * @param personID
      * @param latitude
      * @param longitude
      * @param country
      * @param city
-     * @param event_type
+     * @param eventType
      * @param year
      */
-    public Event(String descendant_username, UUID person_id, double latitude,
-                 double longitude, String country, String city, String event_type, int year) {
-        this.event_id = UUID.randomUUID();
-        this.descendant_username = descendant_username;
-        this.person_id = person_id;
+    public Event(String descendant, String personID, double latitude,
+                 double longitude, String country, String city, String eventType, int year) {
+        this.eventID = UUID.randomUUID().toString();
+        this.descendant = descendant;
+        this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
         this.city = city;
-        this.event_type = event_type;
+        this.eventType = eventType;
         this.year = year;
     }
 
-    public UUID getEvent_id() {
-        return event_id;
+    public String getEventID() {
+        return eventID;
     }
 
-    public String getDescendant_username() {
-        return descendant_username;
+    public String getDescendant() {
+        return descendant;
     }
 
-    public UUID getPerson_id() {
-        return person_id;
+    public String getPersonID() {
+        return personID;
     }
 
     public double getLatitude() {
@@ -102,8 +102,8 @@ public class Event {
         return city;
     }
 
-    public String getEvent_type() {
-        return event_type;
+    public String getEventType() {
+        return eventType;
     }
 
     public int getYear() {

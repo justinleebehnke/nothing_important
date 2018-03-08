@@ -29,11 +29,11 @@ public class PersonDAOTest {
         PersonDAO personDAO = new PersonDAO();
         personDAO.add(person);
 
-        Person person1 = personDAO.read(person.getPerson_id());
-        Assert.assertEquals(person.getPerson_id(), person1.getPerson_id());
-        Assert.assertEquals(person.getDescendant_username(), person1.getDescendant_username());
-        Assert.assertEquals(person.getFirst_name(), person1.getFirst_name());
-        Assert.assertEquals(person.getLast_name(), person1.getLast_name());
+        Person person1 = personDAO.read(person.getPersonID());
+        Assert.assertEquals(person.getPersonID(), person1.getPersonID());
+        Assert.assertEquals(person.getDescendant(), person1.getDescendant());
+        Assert.assertEquals(person.getFirstName(), person1.getFirstName());
+        Assert.assertEquals(person.getLastName(), person1.getLastName());
         Assert.assertEquals(person.getGender(), person1.getGender());
         Assert.assertEquals(person.getFather(), person1.getFather());
         Assert.assertEquals(person.getMother(), person1.getMother());
@@ -66,16 +66,16 @@ public class PersonDAOTest {
         personDAO.add(person4);
         personDAO.add(person5);
 
-        ArrayList<Person> persons = personDAO.read(person1.getDescendant_username());
+        ArrayList<Person> persons = personDAO.read(person1.getDescendant());
 
         Assert.assertTrue(persons.size() == 3);
 
         for (Person person : persons) {
-            Assert.assertTrue(person.getPerson_id().equals(person1.getPerson_id()) ||
-                    person.getPerson_id().equals(person2.getPerson_id()) ||
-                    person.getPerson_id().equals(person3.getPerson_id()));
-            Assert.assertFalse(person.getPerson_id().equals(person4.getPerson_id()) ||
-                    person.getPerson_id().equals(person5.getPerson_id()));
+            Assert.assertTrue(person.getPersonID().equals(person1.getPersonID()) ||
+                    person.getPersonID().equals(person2.getPersonID()) ||
+                    person.getPersonID().equals(person3.getPersonID()));
+            Assert.assertFalse(person.getPersonID().equals(person4.getPersonID()) ||
+                    person.getPersonID().equals(person5.getPersonID()));
         }
     }
 
@@ -93,8 +93,8 @@ public class PersonDAOTest {
 
         PersonDAO personDAO = new PersonDAO();
         personDAO.add(person);
-        Person person1 = personDAO.read(person.getPerson_id());
-        Assert.assertEquals(person.getPerson_id(), person1.getPerson_id());
+        Person person1 = personDAO.read(person.getPersonID());
+        Assert.assertEquals(person.getPersonID(), person1.getPersonID());
         Assert.assertEquals(person.getFather(), person1.getFather());
         Assert.assertEquals(person.getMother(), person1.getMother());
         Assert.assertEquals(person.getSpouse(), person1.getSpouse());

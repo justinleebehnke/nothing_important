@@ -41,9 +41,9 @@ public class UserDAOTest {
             userDAO.add(user2);
             userDAO.add(user3);
 
-            User user4 = userDAO.read(user1.getUsername());
-            User user5 = userDAO.read(user2.getUsername());
-            User user6 = userDAO.read(user3.getUsername());
+            User user4 = userDAO.read(user1.getUserName());
+            User user5 = userDAO.read(user2.getUserName());
+            User user6 = userDAO.read(user3.getUserName());
 
             /* TO TEST THE BAD USERNAME */
             try {
@@ -52,27 +52,27 @@ public class UserDAOTest {
                 Assert.assertEquals("dao.DatabaseException: Username not in database", e.toString());
             }
 
-            Assert.assertEquals(user1.getUsername(), user4.getUsername());
-            Assert.assertEquals(user2.getUsername(), user5.getUsername());
-            Assert.assertEquals(user3.getUsername(), user6.getUsername());
+            Assert.assertEquals(user1.getUserName(), user4.getUserName());
+            Assert.assertEquals(user2.getUserName(), user5.getUserName());
+            Assert.assertEquals(user3.getUserName(), user6.getUserName());
             Assert.assertEquals(user1.getPassword(), user4.getPassword());
             Assert.assertEquals(user2.getPassword(), user5.getPassword());
             Assert.assertEquals(user3.getPassword(), user6.getPassword());
-            Assert.assertEquals(user1.getFirst_name(), user4.getFirst_name());
-            Assert.assertEquals(user2.getFirst_name(), user5.getFirst_name());
-            Assert.assertEquals(user3.getFirst_name(), user6.getFirst_name());
-            Assert.assertEquals(user1.getLast_name(), user4.getLast_name());
-            Assert.assertEquals(user2.getLast_name(), user5.getLast_name());
-            Assert.assertEquals(user3.getLast_name(), user6.getLast_name());
+            Assert.assertEquals(user1.getFirstName(), user4.getFirstName());
+            Assert.assertEquals(user2.getFirstName(), user5.getFirstName());
+            Assert.assertEquals(user3.getFirstName(), user6.getFirstName());
+            Assert.assertEquals(user1.getLastName(), user4.getLastName());
+            Assert.assertEquals(user2.getLastName(), user5.getLastName());
+            Assert.assertEquals(user3.getLastName(), user6.getLastName());
             Assert.assertEquals(user1.getEmail(), user4.getEmail());
             Assert.assertEquals(user2.getEmail(), user5.getEmail());
             Assert.assertEquals(user3.getEmail(), user6.getEmail());
             Assert.assertEquals(user1.getGender(), user4.getGender());
             Assert.assertEquals(user2.getGender(), user5.getGender());
             Assert.assertEquals(user3.getGender(), user6.getGender());
-            Assert.assertEquals(user1.getPerson_id(), user4.getPerson_id());
-            Assert.assertEquals(user2.getPerson_id(), user5.getPerson_id());
-            Assert.assertEquals(user3.getPerson_id(), user6.getPerson_id());
+            Assert.assertEquals(user1.getPersonID(), user4.getPersonID());
+            Assert.assertEquals(user2.getPersonID(), user5.getPersonID());
+            Assert.assertEquals(user3.getPersonID(), user6.getPersonID());
 
         } catch (DatabaseException e) {
             System.out.println(e.toString());

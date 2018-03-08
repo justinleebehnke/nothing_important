@@ -1,7 +1,7 @@
 package services.login;
 
 public class LoginRequest {
-    private String username;
+    private String userName;
     private String password;
 
     /**
@@ -11,12 +11,12 @@ public class LoginRequest {
      * @param password
      */
     public LoginRequest(String username, String password) {
-        this.username = username;
+        this.userName = username;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {

@@ -15,6 +15,8 @@ import sun.net.www.protocol.http.HttpURLConnection;
 public class PersonHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+        MessageResponse errorMessage = new MessageResponse("Person Command was unsuccessful");
+        Gson gson = new Gson();
         boolean success = false;
         try {
             if (httpExchange.getRequestMethod().toLowerCase().equals("get")) {
@@ -22,9 +24,6 @@ public class PersonHandler implements HttpHandler {
                 //TODO Implement the PERSON HANDLERS
                 MessageResponse response = new MessageResponse("PERSON HANDLER METHOD STUBBED");
                 httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-
-
-                Gson gson = new Gson();
                 String jsonStr = gson.toJson(response);
 
                 OutputStream outputStream = httpExchange.getResponseBody();

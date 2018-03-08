@@ -8,35 +8,35 @@ public class Person {
         //Deleteme ASAP, needed for function stubbing
     }
 
-    private UUID person_id;
-    private String descendant_username;
-    private String first_name;
-    private String last_name;
+    private String personID;
+    private String descendant;
+    private String firstName;
+    private String lastName;
     private char gender;
     private String father;
     private String mother;
     private String spouse;
 
     /**
-     * This constructor is for storing person objects read from the database where the person_id
+     * This constructor is for storing person objects read from the database where the personID
      * is already known and will therefore not generate a new one.
      * this constructor like all other model constructors expects
      * that the parameters passed to it have already been validated.
-     * @param person_id
-     * @param descendant_username
-     * @param first_name
-     * @param last_name
+     * @param personID
+     * @param descendant
+     * @param firstName
+     * @param lastName
      * @param gender
      * @param father
      * @param mother
      * @param spouse
      */
-    public Person(UUID person_id, String descendant_username, String first_name, String last_name,
+    public Person(String personID, String descendant, String firstName, String lastName,
                   char gender, String father, String mother, String spouse) {
-        this.person_id = person_id;
-        this.descendant_username = descendant_username;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.personID = personID;
+        this.descendant = descendant;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.father = father;
         this.mother = mother;
@@ -49,20 +49,20 @@ public class Person {
      * this constructor like all other model constructors expects
      * that the parameters passed to it have already been validated.
      *
-     * @param descendant_username
-     * @param first_name
-     * @param last_name
+     * @param descendant
+     * @param firstName
+     * @param lastName
      * @param gender
      * @param father
      * @param mother
      * @param spouse
      */
-    public Person(String descendant_username, String first_name, String last_name,
+    public Person(String descendant, String firstName, String lastName,
                   char gender, String father, String mother, String spouse) {
-        this.person_id = UUID.randomUUID();
-        this.descendant_username = descendant_username;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.personID = UUID.randomUUID().toString();
+        this.descendant = descendant;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.father = father;
         this.mother = mother;
@@ -73,20 +73,20 @@ public class Person {
         this.spouse = spouse;
     }
 
-    public UUID getPerson_id() {
-        return person_id;
+    public String getPersonID() {
+        return personID;
     }
 
-    public String getDescendant_username() {
-        return descendant_username;
+    public String getDescendant() {
+        return descendant;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
     public char getGender() {

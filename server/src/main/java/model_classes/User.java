@@ -4,13 +4,13 @@ import java.util.UUID;
 
 public class User {
 
-     private String username;
+     private String userName;
      private String password;
      private String email;
-     private String first_name;
-     private String last_name;
+     private String firstName;
+     private String lastName;
      private char gender;
-     private UUID person_id;
+     private String personID;
 
     /**
      * This is the secondary constructor that is used to store a user object that is read
@@ -20,20 +20,20 @@ public class User {
      * @param username
      * @param password
      * @param email
-     * @param first_name
-     * @param last_name
+     * @param firstName
+     * @param lastName
      * @param gender
-     * @param person_id
+     * @param personID
      */
-    public User(String username, String password, String email, String first_name,
-                String last_name, char gender, UUID person_id) {
-        this.username = username;
+    public User(String username, String password, String email, String firstName,
+                String lastName, char gender, String personID) {
+        this.userName = username;
         this.password = password;
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
-        this.person_id = person_id;
+        this.personID = personID;
     }
 
     /**
@@ -44,23 +44,23 @@ public class User {
      * @param username
      * @param password
      * @param email
-     * @param first_name
-     * @param last_name
+     * @param firstName
+     * @param lastName
      * @param gender
      */
-    public User(String username, String password, String email, String first_name,
-                String last_name, char gender) {
-        this.username = username;
+    public User(String username, String password, String email, String firstName,
+                String lastName, char gender) {
+        this.userName = username;
         this.password = password;
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
-        this.person_id = UUID.randomUUID();
+        this.personID = UUID.randomUUID().toString();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {
@@ -71,19 +71,19 @@ public class User {
         return email;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
     public char getGender() {
         return gender;
     }
 
-    public UUID getPerson_id() {
-        return person_id;
+    public String getPersonID() {
+        return personID;
     }
 }

@@ -33,16 +33,16 @@ public class EventDAOTest {
 
         eventDAO.add(event);
 
-        Event event1 = eventDAO.read(event.getEvent_id());
+        Event event1 = eventDAO.read(event.getEventID());
 
-        Assert.assertEquals(event.getEvent_id(), event1.getEvent_id());
-        Assert.assertEquals(event.getPerson_id(), event1.getPerson_id());
-        Assert.assertEquals(event.getDescendant_username(), event1.getDescendant_username());
+        Assert.assertEquals(event.getEventID(), event1.getEventID());
+        Assert.assertEquals(event.getPersonID(), event1.getPersonID());
+        Assert.assertEquals(event.getDescendant(), event1.getDescendant());
         Assert.assertEquals(event.getLatitude(), event1.getLatitude(), 0.0001);
         Assert.assertEquals(event.getLongitude(), event1.getLongitude(), 0.0001);
         Assert.assertEquals(event.getCountry(), event1.getCountry());
         Assert.assertEquals(event.getCity(), event1.getCity());
-        Assert.assertEquals(event.getEvent_type(), event1.getEvent_type());
+        Assert.assertEquals(event.getEventType(), event1.getEventType());
         Assert.assertTrue(event.getYear() == event1.getYear());
 
     }
@@ -78,15 +78,15 @@ public class EventDAOTest {
         eventDAO.add(event4);
         eventDAO.add(event5);
 
-        ArrayList<Event> events = eventDAO.read(event1.getDescendant_username());
+        ArrayList<Event> events = eventDAO.read(event1.getDescendant());
         Assert.assertTrue(events.size() == 3);
 
         for (Event event : events) {
-            Assert.assertTrue(event.getEvent_id().equals(event1.getEvent_id()) ||
-                    event.getEvent_id().equals(event2.getEvent_id()) ||
-                    event.getEvent_id().equals(event3.getEvent_id()));
-            Assert.assertFalse(event.getEvent_id().equals(event4.getEvent_id()) ||
-                    event.getEvent_id().equals(event5.getEvent_id()));
+            Assert.assertTrue(event.getEventID().equals(event1.getEventID()) ||
+                    event.getEventID().equals(event2.getEventID()) ||
+                    event.getEventID().equals(event3.getEventID()));
+            Assert.assertFalse(event.getEventID().equals(event4.getEventID()) ||
+                    event.getEventID().equals(event5.getEventID()));
         }
     }
 }

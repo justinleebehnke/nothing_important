@@ -44,20 +44,20 @@ public class RegisterService {
                 //generate four generations of familyHistoryInformation
                 FillService fillService = new FillService();
                 try {
-                    fillService.fill(user.getUsername(), 4);
+                    fillService.fill(user.getUserName(), 4);
                 }
                 catch (DatabaseException dbe) {
                     throw new InvalidInputException(dbe.toString(), dbe);
                 }
                 //log the user in
-                LoginRequest loginRequest = new LoginRequest(user.getUsername(), user.getPassword());
+                LoginRequest loginRequest = new LoginRequest(user.getUserName(), user.getPassword());
                 LoginService loginService = new LoginService();
                 LoginResult loginResult = loginService.login(loginRequest);
 
                 //return the result object
                 return new RegisterResult(
                         loginResult.getAuth_token(),
-                        user.getUsername(),
+                        user.getUserName(),
                         loginResult.getPerson_id());
             }
             else {
@@ -73,7 +73,7 @@ public class RegisterService {
         UserDAO userDAO = new UserDAO();
         try {
             User user = userDAO.read(userName);
-            if (user.getUsername().equals(userName)) {
+            if (user.getUserName().equals(userName)) {
                 return false;
             }
         }

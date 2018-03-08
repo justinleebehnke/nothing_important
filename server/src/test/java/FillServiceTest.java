@@ -48,8 +48,8 @@ public class FillServiceTest {
         userDAO.add(user1);
         userDAO.add(user2);
 
-        System.out.print(fillService.fill(user1.getUsername(), 4));
-        System.out.print(fillService.fill(user2.getUsername(), 4));
+        System.out.print(fillService.fill(user1.getUserName(), 4));
+        System.out.print(fillService.fill(user2.getUserName(), 4));
         //go check the database
 
     }

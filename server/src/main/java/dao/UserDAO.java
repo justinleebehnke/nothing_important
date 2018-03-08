@@ -25,13 +25,13 @@ public class UserDAO {
             String sql =
                     "insert into users (username, password, email, first_name, " +
                     "last_name, gender, person_id) values ('" +
-                    user.getUsername() + "', '" +
+                    user.getUserName() + "', '" +
                     user.getPassword() + "', '" +
                     user.getEmail() + "', '" +
-                    user.getFirst_name() + "', '" +
-                    user.getLast_name() + "', '" +
+                    user.getFirstName() + "', '" +
+                    user.getLastName() + "', '" +
                     user.getGender() + "', '" +
-                    user.getPerson_id() + "');";
+                    user.getPersonID() + "');";
 
             PreparedStatement preparedStatement = null;
             try {
@@ -83,7 +83,7 @@ public class UserDAO {
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getString("gender").charAt(0),
-                        UUID.fromString(resultSet.getString("person_id")));
+                        resultSet.getString("person_id"));
                 statement.close();
                 db.closeConnection(false);
                 return user;

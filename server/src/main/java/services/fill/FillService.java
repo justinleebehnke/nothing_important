@@ -56,20 +56,20 @@ public class FillService {
         //create a first user, then call recursive fill
         //I can create father and mother now
         //then use those values to build the next
-        String parents[] = buildParents(user.getUsername(), numGenerations, birthYear, numEvents);
+        String parents[] = buildParents(user.getUserName(), numGenerations, birthYear, numEvents);
 
 
 
-        Person person = new Person(user.getUsername(),
-                user.getFirst_name(),
-                user.getLast_name(),
+        Person person = new Person(user.getUserName(),
+                user.getFirstName(),
+                user.getLastName(),
                 user.getGender(),
                 parents[0],
                 parents[1],
                 "");
         personDAO.add(person);
 
-        addUserEvents(person.getPerson_id(), username,  numEvents, birthYear);
+        addUserEvents(person.getPersonID(), username,  numEvents, birthYear);
         //now the user person object is recreated
         //now we do the recursive fill based on the number of generations
 
@@ -133,24 +133,24 @@ public class FillService {
                 momParents[1],
                 "");
         //set spouse
-        mom.setSpouse(dad.getPerson_id().toString());
-        dad.setSpouse(mom.getPerson_id().toString());
+        mom.setSpouse(dad.getPersonID());
+        dad.setSpouse(mom.getPersonID());
         //one marriage event
-        createMarriageEvent(dad.getPerson_id(), mom.getPerson_id(), childBirthYear, username);
+        createMarriageEvent(dad.getPersonID(), mom.getPersonID(), childBirthYear, username);
         //add other events
-        addUserEvents(dad.getPerson_id(), username, numEvents, dadBirthYear);
-        addUserEvents(mom.getPerson_id(), username, numEvents, momBirthYear);
+        addUserEvents(dad.getPersonID(), username, numEvents, dadBirthYear);
+        addUserEvents(mom.getPersonID(), username, numEvents, momBirthYear);
 
         PersonDAO personDAO = new PersonDAO();
         personDAO.add(mom);
         personDAO.add(dad);
 
-        parents[0] = dad.getPerson_id().toString();
-        parents[1] = mom.getPerson_id().toString();
+        parents[0] = dad.getPersonID();
+        parents[1] = mom.getPersonID();
         return parents;
     }
 
-    private void createMarriageEvent(UUID dadPerson_id, UUID momPerson_id, int childBirthYear, String username) throws DatabaseException {
+    private void createMarriageEvent(String dadPerson_id, String momPerson_id, int childBirthYear, String username) throws DatabaseException {
         //create two marriage events, one for mom and another for dad
         EventLocationGenerator events = new EventLocationGenerator();
         EventLocation eventLocation = events.randomLocation();
@@ -208,7 +208,7 @@ public class FillService {
         return start + (int)Math.round(Math.random() * (end - start));
     }
 
-    private void addUserEvents(UUID person_id, String username, int numEvents, int birthYear) throws DatabaseException {
+    private void addUserEvents(String person_id, String username, int numEvents, int birthYear) throws DatabaseException {
         String eventTypes[] = {
                 "birth",
                 "baptism",
@@ -227,7 +227,7 @@ public class FillService {
         }
     }
 
-    private void createEvent(String eventType, UUID person_id, int birthYear, String descendant_userName) throws DatabaseException {
+    private void createEvent(String eventType, String person_id, int birthYear, String descendant_userName) throws DatabaseException {
         assert birthYear < 2015;
         int eventYear = birthYear;
         switch (eventType) {

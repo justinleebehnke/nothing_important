@@ -45,12 +45,12 @@ public class AuthTokenDAOTest {
         AuthToken authToken5 = new AuthToken("NEVER_ADDED");
         AuthToken authToken6 = new AuthToken("NEVER_ADDED");
 
-        Assert.assertEquals("George", authTokenDAO.read(authToken1));
-        Assert.assertEquals("Jack", authTokenDAO.read(authToken2));
-        Assert.assertEquals("John", authTokenDAO.read(authToken3));
-        Assert.assertEquals("Jess", authTokenDAO.read(authToken4));
-        Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken5));
-        Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken6));
+        Assert.assertEquals("George", authTokenDAO.read(authToken1.getAuth_token()));
+        Assert.assertEquals("Jack", authTokenDAO.read(authToken2.getAuth_token()));
+        Assert.assertEquals("John", authTokenDAO.read(authToken3.getAuth_token()));
+        Assert.assertEquals("Jess", authTokenDAO.read(authToken4.getAuth_token()));
+        Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken5.getAuth_token()));
+        Assert.assertEquals("INVALID AUTH TOKEN", authTokenDAO.read(authToken6.getAuth_token()));
 
     }
 }

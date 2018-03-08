@@ -1,9 +1,12 @@
 package services.event;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
 
+import dao.DatabaseException;
+import dao.EventDAO;
 import model_classes.Event;
 
 public class EventService {
@@ -19,8 +22,9 @@ public class EventService {
      * It will then return them as an array
      * @return
      */
-    public Set<String> getWholeFamilyEvents() {
-        return new TreeSet<>();
+    public ArrayList<Event> getWholeFamilyEvents(String username) throws DatabaseException {
+        EventDAO eventDAO = new EventDAO();
+        return eventDAO.read(username);
     }
 
     /**
@@ -29,7 +33,9 @@ public class EventService {
      * @param event_id
      * @return
      */
-    public Event getSingleEvent(UUID event_id) {
-        return new Event();
+    public Event getSingleEvent(String event_id, String username) throws DatabaseException {
+        EventDAO eventDAO = new EventDAO();
+        Event event = eventDAO.readEvent(event_id, username);
+        return event;
     }
 }
