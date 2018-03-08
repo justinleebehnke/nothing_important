@@ -3,9 +3,14 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import dao.Database;
 import dao.DatabaseException;
 import dao.EventDAO;
+import dao.PersonDAO;
+import model_classes.Event;
+import model_classes.Person;
 import model_classes.User;
 import services.message.ErrorMessageException;
 import services.message.InvalidInputException;
@@ -14,11 +19,7 @@ import services.register.RegisterResult;
 import services.register.RegisterService;
 
 public class RegisterServiceTest {
-    /*
-    register creates 4 generations ie 31 people
-    register throws an error when its given an existing username
-    throws error when input is invalid
-     */
+
     @Test
     public void testRegistration() throws InvalidInputException, ErrorMessageException, DatabaseException {
         Database db = new Database();
@@ -34,9 +35,10 @@ public class RegisterServiceTest {
                 );
         RegisterResult registerResult = registerService.register(registerRequest);
         //the size of the person array should be 31
-        EventDAO eventDAO = new EventDAO();
-        eventDAO.read("user1");
-        //just need to finsih this after!!
+        PersonDAO personDAO = new PersonDAO();
+        ArrayList<Person> persons = personDAO.read("user1");
+        Assert.assertEquals(31, persons.size());
+
 
         try {
             RegisterRequest registerRequest2 = new RegisterRequest(
