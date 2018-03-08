@@ -154,7 +154,7 @@ public class FillService {
         //create two marriage events, one for mom and another for dad
         EventLocationGenerator events = new EventLocationGenerator();
         EventLocation eventLocation = events.randomLocation();
-        int eventYear = childBirthYear - ((int)(Math.random() * 10) + 1);
+        int eventYear = childBirthYear - ((int)(Math.random() * 1) + 1);
 
         Event dadMarriage = new Event(username,
                 dadPerson_id,
@@ -263,10 +263,5 @@ public class FillService {
                 eventYear);
         EventDAO eventDAO = new EventDAO();
         eventDAO.add(event);
-    }
-
-    private Person generatePerson(String username) {
-        //this creates a person object for a username
-        return null;
     }
 }

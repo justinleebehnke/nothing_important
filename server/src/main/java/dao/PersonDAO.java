@@ -85,7 +85,7 @@ public class PersonDAO {
             if (!resultSet.next()) {
                 statement.close();
                 db.closeConnection(false);
-                throw new DatabaseException("Event_ID not in database");
+                throw new DatabaseException("Person_ID not in database");
             } else {
 
                 Person person = new Person(

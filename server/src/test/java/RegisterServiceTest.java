@@ -1,9 +1,11 @@
 import com.google.gson.Gson;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import dao.Database;
 import dao.DatabaseException;
+import dao.EventDAO;
 import model_classes.User;
 import services.message.ErrorMessageException;
 import services.message.InvalidInputException;
@@ -31,8 +33,24 @@ public class RegisterServiceTest {
                 'f'
                 );
         RegisterResult registerResult = registerService.register(registerRequest);
-        Gson gson = new Gson();
+        //the size of the person array should be 31
+        EventDAO eventDAO = new EventDAO();
+        eventDAO.read("user1");
+        //just need to finsih this after!!
 
-        System.out.print(gson.toJson(registerResult));
+        try {
+            RegisterRequest registerRequest2 = new RegisterRequest(
+                    "user1",
+                    "password1",
+                    "fake@byu.edu",
+                    "first1",
+                    "last1",
+                    'f'
+            );
+            RegisterResult reject = registerService.register(registerRequest);
+        } catch (Exception e) {
+            Assert.assertEquals("services.message.InvalidInputException: Username is already taken", e.toString());
+        }
+
     }
 }

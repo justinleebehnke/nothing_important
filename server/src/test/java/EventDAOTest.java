@@ -83,6 +83,7 @@ public class EventDAOTest {
         ArrayList<Event> events = eventDAO.read(event1.getDescendant());
         Assert.assertTrue(events.size() == 3);
 
+        //make sure that none of the events are from other usernames
         for (Event event : events) {
             Assert.assertTrue(event.getEventID().equals(event1.getEventID()) ||
                     event.getEventID().equals(event2.getEventID()) ||
