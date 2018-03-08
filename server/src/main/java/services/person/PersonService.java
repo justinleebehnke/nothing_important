@@ -1,8 +1,11 @@
 package services.person;
 
 
+import java.util.ArrayList;
 import java.util.UUID;
 
+import dao.DatabaseException;
+import dao.PersonDAO;
 import model_classes.Person;
 
 public class PersonService {
@@ -17,8 +20,9 @@ public class PersonService {
      * associated with the current user to the array.
      * @return personResponseObecject
      */
-    public PersonResponse getAllPersons() {
-        return new PersonResponse();
+    public ArrayList<Person> getAllPersons(String username) throws DatabaseException {
+        PersonDAO personDAO = new PersonDAO();
+        return personDAO.read(username);
     }
 
     /**
@@ -27,7 +31,9 @@ public class PersonService {
      * @param person_id
      * @return Person
      */
-    public Person getSinglePersonById(UUID person_id) {
-        return new Person();
+    public Person getSinglePerson(String person_id, String username) throws DatabaseException {
+        PersonDAO personDAO = new PersonDAO();
+        Person person = personDAO.read(person_id, username);
+        return person;
     }
 }

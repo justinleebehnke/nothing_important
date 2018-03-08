@@ -70,7 +70,7 @@ public class PersonDAO {
      * @return
      * @throws DatabaseException
      */
-    public Person read(UUID person_id) throws DatabaseException {
+    public Person read(String person_id, String username) throws DatabaseException {
         try {
             Database db = new Database();
             db.openConnection();
@@ -100,6 +100,9 @@ public class PersonDAO {
 
                 statement.close();
                 db.closeConnection(false);
+                if (!person.getDescendant().equals(username)) {
+                    throw new DatabaseException("Person Specified is not associated with user");
+                }
                 return person;
             }
         } catch (SQLException e) {
@@ -146,7 +149,6 @@ public class PersonDAO {
 
                     persons.add(person);
                 } while (resultSet.next());
-
                 statement.close();
                 db.closeConnection(false);
                 return persons;
