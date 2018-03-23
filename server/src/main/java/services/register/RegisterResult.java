@@ -7,10 +7,6 @@ public class RegisterResult {
     private String username;
     private String person_id;
 
-    public RegisterResult() {
-        //Stub for easy stubbing other classes
-    }
-
     /**
      * This is just a placeholder for the result body of the Register Service class
      * This is the return object for the RegisterService register method.

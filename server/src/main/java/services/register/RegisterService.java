@@ -44,7 +44,7 @@ public class RegisterService {
                 //generate four generations of familyHistoryInformation
                 FillService fillService = new FillService();
                 try {
-                    fillService.fill(user.getUserName(), 4);
+                    fillService.fill(user.getUserName(), 4); //this fill service deletes the database data
                 }
                 catch (DatabaseException dbe) {
                     throw new InvalidInputException(dbe.toString(), dbe);
